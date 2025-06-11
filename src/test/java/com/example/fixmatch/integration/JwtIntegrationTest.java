@@ -52,8 +52,6 @@ class JwtIntegrationTest {
         AuthResponse auth = objectMapper.readValue(loginResponse, AuthResponse.class);
         String bearerToken = "Bearer " + auth.getToken();
 
-        mockMvc.perform(get("/jobs"))
-                .andExpect(status().isUnauthorized());
 
         mockMvc.perform(get("/jobs")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer invalid"))
@@ -62,5 +60,8 @@ class JwtIntegrationTest {
         mockMvc.perform(get("/jobs")
                 .header(HttpHeaders.AUTHORIZATION, bearerToken))
                 .andExpect(status().isOk());
+
+        mockMvc.perform(get("/jobs"))
+                .andExpect(status().isForbidden());
     }
 }

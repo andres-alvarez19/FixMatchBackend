@@ -32,7 +32,6 @@ class UserServiceTest {
         request.setName("Test");
         request.setEmail("test@example.com");
         request.setPassword("pass");
-        // leave role null to use default
 
         when(passwordEncoder.encode("pass")).thenReturn("encoded");
         when(userRepository.save(any(User.class))).thenAnswer(inv -> inv.getArgument(0));
