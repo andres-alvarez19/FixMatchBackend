@@ -2,6 +2,7 @@ package com.example.fixmatch.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,4 +18,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     private Double reputation;
+    private String telefono;
+    private String ubicacion;
+    @ElementCollection
+    private List<String> servicios;
 }
