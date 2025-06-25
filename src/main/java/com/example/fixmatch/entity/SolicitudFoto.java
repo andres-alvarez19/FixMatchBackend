@@ -6,16 +6,12 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Message {
+public class SolicitudFoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String url;
+    private LocalDateTime fechaSubida;
     @ManyToOne
-    private User sender;
-    @ManyToOne
-    private User receiver;
-    @ManyToOne
-    private Chat chat;
-    private String content;
-    private LocalDateTime timestamp;
+    private Solicitud solicitud;
 }
