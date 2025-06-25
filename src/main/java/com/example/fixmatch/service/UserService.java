@@ -21,8 +21,14 @@ public class UserService {
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Optional.ofNullable(request.getRole()).orElse(Role.CLIENT));
+        user.setPassword(request.getPassword());
+        user.setRole(request.getRole());
+        return registerUser(user);
+    }
+
+    public User registerUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Optional.ofNullable(user.getRole()).orElse(Role.CLIENT));
         return userRepository.save(user);
     }
 
