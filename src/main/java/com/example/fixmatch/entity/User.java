@@ -11,18 +11,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-<<<<<<< ftr_solucionar-errores-de-métodos-no-encontrados_2025-06-25
 
-    private String nombre;
-    private String email;
+//    private String nombre;
     private String telefono;
-    private String ubicacion;
+//    private String ubicacion;
 
     @ElementCollection
     @CollectionTable(name = "user_servicios", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "servicio")
     private List<String> servicios;
-=======
+
     private String name;
     @Column(unique = true)
     private String email;
@@ -48,5 +46,4 @@ public class User {
 
     @OneToMany(mappedBy = "uploadedBy")
     private java.util.List<Certificate> certificates;
->>>>>>> develop
 }
