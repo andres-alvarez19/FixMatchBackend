@@ -23,6 +23,7 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(Optional.ofNullable(request.getRole()).orElse(Role.CLIENT));
+        user.setAvatar(request.getAvatar());
         return userRepository.save(user);
     }
 
