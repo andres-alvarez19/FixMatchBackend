@@ -17,4 +17,22 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     private Double reputation;
+
+    private String dateOfBirth;
+    private String countryCode;
+    private String phoneNumber;
+    private String location;
+    private String profileImage;
+    private Double rating;
+    private Integer projects;
+    private String aboutMe;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<Education> education;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Resume resume;
+
+    @OneToMany(mappedBy = "uploadedBy")
+    private java.util.List<Certificate> certificates;
 }
