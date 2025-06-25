@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class MessageRequest {
+    private Long chatId;
     private Long receiverId;
-    private String content;
+    private String text;
+    private String file;
 }

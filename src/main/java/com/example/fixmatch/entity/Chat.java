@@ -2,20 +2,17 @@ package com.example.fixmatch.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Message {
+public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
-    private User sender;
+    private User user1;
+
     @ManyToOne
-    private User receiver;
-    @ManyToOne
-    private Chat chat;
-    private String content;
-    private LocalDateTime timestamp;
+    private User user2;
 }
