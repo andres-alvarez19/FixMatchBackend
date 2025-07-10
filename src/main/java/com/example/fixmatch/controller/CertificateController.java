@@ -34,4 +34,12 @@ public class CertificateController {
         User user = userService.findByEmail(principal.getName()).orElseThrow();
         return ResponseEntity.ok(certificateService.myCertificates(user));
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('SPECIALIST')")
+    public ResponseEntity<Void> delete(@PathVariable Long id, Principal principal) {
+        User user = userService.findByEmail(principal.getName()).orElseThrow();
+        certificateService.delete(id, user);
+        return ResponseEntity.ok().build();
+    }
 }

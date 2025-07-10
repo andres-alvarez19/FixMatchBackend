@@ -25,4 +25,16 @@ public class CertificateService {
     public List<Certificate> myCertificates(User user) {
         return certificateRepository.findByUploadedBy(user);
     }
+
+    public void delete(Long id, User user) {
+        Certificate certificate = certificateRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Certificado no encontrado"));
+        
+        // Verificar que el certificado pertenece al usuario
+        if (!certificate.getUploadedBy().getId().equals(user.getId())) {
+            throw new RuntimeException("No tienes permisos para eliminar este certificado");
+        }
+        
+        certificateRepository.delete(certificate);
+    }
 }

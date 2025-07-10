@@ -45,8 +45,17 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public boolean isEmailAvailable(String email) {
+        return !userRepository.findByEmail(email).isPresent();
+    }
+
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
+    }
+
+    public Optional<UserProfileDto> getProfileByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .map(this::toDto);
     }
 
     public UserProfileDto toDto(User user) {
